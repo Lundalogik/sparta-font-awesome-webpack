@@ -15,11 +15,11 @@ module.exports.pitch = function (remainingRequest) {
     console.error('ERROR: ' + msg);
     throw new Error(msg);
   }
-  
+
   var config = require(configFilePath);
   var styleLoader = config.styleLoader || 'style-loader!css-loader!less-loader';
 
-  var styleLoaderCommand = 'require(' + JSON.stringify('-!' + styleLoader + '!' +
+  var styleLoaderCommand = 'module.exports.css = require(' + JSON.stringify('-!' + styleLoader + '!' +
       require.resolve('./font-awesome-styles.loader.js') + '!' + configFilePath) + ');';
   return styleLoaderCommand;
 };
